@@ -3,8 +3,22 @@ RoCKIn@Work Central Factory Hub (CFH) Examples
 
 This repository contains very simple examples of how a robot would communicate with the RoCKIn Central Factory Hub.
 
-  - TODO: cpp example 
-  - TODO: roscpp example
+building with ROS catkin_make
+-----------------------------
+
+This project works out of the box
+
+1. Clone it into catkin_workspace/src
+2. Get the git submodules. See README
+3. run catkin_make
+
+Note: This package contains at_work_central_factory_hub_comm which will conflict if it's already in the catkin workspace.
+A quick fix is to add CATKIN_IGNORE files, in one of the conflicting locations. 
+
+    cd [catkin_workspace]
+    touch ./src/at_work_central_factory_hub_comm/at_work_central_factory_hub_comm/CATKIN_IGNORE
+    touch ./src/at_work_central_factory_hub_comm/protobuf_comm/CATKIN_IGNORE
+    touch ./src/at_work_central_factory_hub_comm/rockin_msgs/CATKIN_IGNORE
 
 about git submodules
 --------------------
@@ -28,32 +42,3 @@ Older versions of git need to
     cd at_work_central_factory_hub_comm
     git submodule init
     git submodule update
-
-building with cmake
--------------------
-
-    mkdir build
-    cd build
-    cmake ..
-    make
-
-building with ROS catkin_make
------------------------------
-
-TODO: this is unfinished, and under development.   
-This should work "off the shelf", just clone into a working catkin workspace and run catkin_make.
-
-Note: This package contains at_work_central_factory_hub_comm which will conflict if it's already in the catkin workspace.
-A quick fix is to add CATKIN_IGNORE files, in one of the conflicting locations. 
-
-    cd [catkin_workspace]
-    touch ./src/at_work_central_factory_hub_comm/at_work_central_factory_hub_comm/CATKIN_IGNORE
-    touch ./src/at_work_central_factory_hub_comm/protobuf_comm/CATKIN_IGNORE
-    touch ./src/at_work_central_factory_hub_comm/rockin_msgs/CATKIN_IGNORE
-
-TODO:
-Look into cmake & ros, no catkin_make solution. This is currently disabled (see if statement in toplevel CMakeLists.txt) 
-
-    mkdir build
-    cd build
-    cmake -DWithROS=True ..   

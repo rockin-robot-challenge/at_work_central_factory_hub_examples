@@ -18,8 +18,8 @@ RobotExampleROS::RobotExampleROS(const ros::NodeHandle &nh):
     drill_machine_status_pub_ = nh_.advertise<at_work_robot_example_ros::DrillingMachineStatus> (
                             "drill_machine_status", 10);
 
-    conveyor_belt_status_pub_ = nh_.advertise<at_work_robot_example_ros::TriggeredConveyorBeltStatus> (
-                        "conveyor_belt_status", 10);
+//    conveyor_belt_status_pub_ = nh_.advertise<at_work_robot_example_ros::TriggeredConveyorBeltStatus> (
+//                        "conveyor_belt_status", 10);
 
     inventory_pub_ = nh_.advertise<at_work_robot_example_ros::Inventory> ("inventory", 10);
 
@@ -30,8 +30,8 @@ RobotExampleROS::RobotExampleROS(const ros::NodeHandle &nh):
     drillling_machine_command_sub_ = nh_.subscribe<at_work_robot_example_ros::DrillingMachineCommand>(
                         "drilling_machine_command", 1000, &RobotExampleROS::DrillingMachineCommandCB, this);
 
-    conveyor_belt_command_sub_ = nh_.subscribe<at_work_robot_example_ros::TriggeredConveyorBeltCommand>(
-                        "conveyor_belt_command", 1000, &RobotExampleROS::TriggeredConveyorBeltCommandCB, this);
+ //   conveyor_belt_command_sub_ = nh_.subscribe<at_work_robot_example_ros::TriggeredConveyorBeltCommand>(
+  //                      "conveyor_belt_command", 1000, &RobotExampleROS::TriggeredConveyorBeltCommandCB, this);
 
     benchmark_feedback_sub_ = nh_.subscribe<at_work_robot_example_ros::BenchmarkFeedback>(
                         "benchmark_feedback", 1000, &RobotExampleROS::BenchmarkFeedbackCB, this);
@@ -131,6 +131,7 @@ void RobotExampleROS::DrillingMachineCommandCB(at_work_robot_example_ros::Drilli
 
 void RobotExampleROS::TriggeredConveyorBeltCommandCB(at_work_robot_example_ros::TriggeredConveyorBeltCommand msg)
 {
+    /*
     //create a new message
     std::shared_ptr<TriggeredConveyorBeltCommand> conveyor_belt_command(new TriggeredConveyorBeltCommand);
 
@@ -145,6 +146,7 @@ void RobotExampleROS::TriggeredConveyorBeltCommandCB(at_work_robot_example_ros::
 
     //send the Message over team peer
     peer_team_->send(conveyor_belt_command);
+    */
 }
 
 void RobotExampleROS::BenchmarkFeedbackCB(at_work_robot_example_ros::BenchmarkFeedback msg)
@@ -412,7 +414,7 @@ void RobotExampleROS::handleMessage(boost::asio::ip::udp::endpoint &sender,
 
         drill_machine_status_pub_.publish(drill_machine_msg);
 
-    } else if ((conveyor_belt_status_ptr = std::dynamic_pointer_cast<TriggeredConveyorBeltStatus>(msg))) {
+/*    } else if ((conveyor_belt_status_ptr = std::dynamic_pointer_cast<TriggeredConveyorBeltStatus>(msg))) {
 
         at_work_robot_example_ros::TriggeredConveyorBeltStatus conveyor_belt_status_msg;
 
@@ -422,6 +424,7 @@ void RobotExampleROS::handleMessage(boost::asio::ip::udp::endpoint &sender,
 
         conveyor_belt_status_pub_.publish(conveyor_belt_status_msg);
 
+        */
     } else if ((inventory_pub_ptr = std::dynamic_pointer_cast<Inventory>(msg))) {
 
         at_work_robot_example_ros::Inventory inventory_msg;

@@ -129,9 +129,9 @@ void RobotExampleROS::DrillingMachineCommandCB(at_work_robot_example_ros::Drilli
     peer_team_->send(drill_machine_command);
 }
 
+    /*
 void RobotExampleROS::TriggeredConveyorBeltCommandCB(at_work_robot_example_ros::TriggeredConveyorBeltCommand msg)
 {
-    /*
     //create a new message
     std::shared_ptr<TriggeredConveyorBeltCommand> conveyor_belt_command(new TriggeredConveyorBeltCommand);
 
@@ -146,16 +146,16 @@ void RobotExampleROS::TriggeredConveyorBeltCommandCB(at_work_robot_example_ros::
 
     //send the Message over team peer
     peer_team_->send(conveyor_belt_command);
-    */
 }
 
+    */
 void RobotExampleROS::BenchmarkFeedbackCB(at_work_robot_example_ros::BenchmarkFeedback msg)
 {
     //create a new message
     std::shared_ptr<BenchmarkFeedback> benchmark_feedback(new BenchmarkFeedback);
 
     //fill the message for FBM1
-    benchmark_feedback->set_phase_to_terminate((rockin_msgs::BenchmarkState_Phase)msg.phase_to_terminate.data);
+    //benchmark_feedback->set_phase_to_terminate((rockin_msgs::BenchmarkState_Phase)msg.phase_to_terminate.data);
 
     benchmark_feedback->set_object_class_name((std::string)msg.object_class_name.data);
 
@@ -280,9 +280,9 @@ void RobotExampleROS::initializeRobot()
     message_register.add_message_type<RobotInfo>();
     message_register.add_message_type<VersionInfo>();
     message_register.add_message_type<DrillingMachineStatus>();
-    message_register.add_message_type<TriggeredConveyorBeltStatus>();
+    //message_register.add_message_type<TriggeredConveyorBeltStatus>();
     message_register.add_message_type<DrillingMachineCommand>();
-    message_register.add_message_type<TriggeredConveyorBeltCommand>();
+    //message_register.add_message_type<TriggeredConveyorBeltCommand>();
 
     //create team peer and linked to internal message handler
     if (remote_refbox_) {
@@ -355,7 +355,7 @@ void RobotExampleROS::handleMessage(boost::asio::ip::udp::endpoint &sender,
 
     std::shared_ptr<DrillingMachineStatus> drill_machine_status_ptr;
 
-    std::shared_ptr<TriggeredConveyorBeltStatus> conveyor_belt_status_ptr;
+    //std::shared_ptr<TriggeredConveyorBeltStatus> conveyor_belt_status_ptr;
 
     std::shared_ptr<Inventory> inventory_pub_ptr;
 
@@ -381,6 +381,7 @@ void RobotExampleROS::handleMessage(boost::asio::ip::udp::endpoint &sender,
                                         benchmark_state_ptr->benchmark_time().nsec();
         benchmark_state_msg.state.data =
                                         benchmark_state_ptr->state();
+	/*
         benchmark_state_msg.phase.data =
                                         benchmark_state_ptr->phase();
         benchmark_state_msg.scenario.type.data =
@@ -389,7 +390,7 @@ void RobotExampleROS::handleMessage(boost::asio::ip::udp::endpoint &sender,
                                         benchmark_state_ptr->scenario().type_id();
         benchmark_state_msg.scenario.description.data =
                                         benchmark_state_ptr->scenario().description();
-
+	*/
         benchmark_state_msg.known_teams.resize(benchmark_state_ptr->known_teams().size());
 
         for(int i=0; i < benchmark_state_ptr->known_teams().size(); i++) {

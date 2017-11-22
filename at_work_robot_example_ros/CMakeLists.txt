@@ -56,18 +56,18 @@ if(DEFINED _CATKIN_ALL_INCLUDED_)
       message_runtime
   )
 
-  add_executable(robot_example_ros
+  add_executable(robot_example_ros_erl
      ros/src/robot_example_ros_node.cpp
      ros/src/robot_example_ros.cpp
   )
 
-  target_link_libraries(robot_example_ros
+  target_link_libraries(robot_example_ros_erl
      ${catkin_LIBRARIES}
      ${Boost_LIBRARIES}
   )
 
   install(
-    TARGETS robot_example_ros
+    TARGETS robot_example_ros_erl
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
 

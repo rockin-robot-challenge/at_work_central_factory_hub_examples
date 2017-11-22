@@ -114,7 +114,7 @@ class RobotExampleROS
         void DrillingMachineCommandCB(at_work_robot_example_ros::DrillingMachineCommand msg);
 
 
-        void TriggeredConveyorBeltCommandCB(at_work_robot_example_ros::TriggeredConveyorBeltCommand msg);
+        //void TriggeredConveyorBeltCommandCB(at_work_robot_example_ros::TriggeredConveyorBeltCommand msg);
 
 
         void BenchmarkFeedbackCB(at_work_robot_example_ros::BenchmarkFeedback msg);
